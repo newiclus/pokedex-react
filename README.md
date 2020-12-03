@@ -10,7 +10,7 @@ git checkout [react-native|angular]
 
 ```bash
 git clone https://github.com/newiclus/pokedex-react.git
-cd frontend-code-challenge
+cd pokedex-react
 yarn install
 yarn start
 ```
