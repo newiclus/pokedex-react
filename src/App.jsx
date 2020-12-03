@@ -5,7 +5,7 @@ import PokemonDetail from './Components/PokemonDetail';
 
 import './App.css';
 
-const URL_PATH = "https://gist.githubusercontent.com/bar0191/fae6084225b608f25e98b733864a102b/raw/dea83ea9cf4a8a6022bfc89a8ae8df5ab05b6dcc/pokemon.json";
+const URL_PATH = "https://gist.githubusercontent.com/newiclus/abc33f57ce811471371f560ed497f2ea/raw/731f61720c5d927ccdd2f6186d16dbea6a080f61/pokemon.json";
 
 const App = () => {
     const [pokeDex, setPokeDex] = useState([]);
@@ -89,7 +89,7 @@ const App = () => {
 
           <PokemonsList list={pokemons} onMoreInfo={handleMoreInfo} />
         </section>
-        
+
         <Modal open={openModal} onClose={handleCloseModal}>
           {currentId && <PokemonDetail detail={pokemonDetail} />}
         </Modal>
