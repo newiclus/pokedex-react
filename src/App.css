@@ -69,11 +69,6 @@ td {
     font-size: 100%;
     vertical-align: baseline;
 }
-body {
-    line-height: 1;
-    color: #000;
-    background: #fff;
-}
 ol,
 ul {
     list-style: none;
@@ -121,15 +116,14 @@ a img {
 }
 html,
 body {
-    height: 100%;
-    width: 100%;
     font-family: sans-serif;
-    overflow-x: hidden;
-    max-width: 100vw;
 }
 img {
     object-fit: contain;
     max-width: 100%;
+}
+button {
+    cursor: pointer;
 }
 .type {
     border-radius: 10px;
@@ -215,14 +209,12 @@ img {
     border: 1px solid darker(#ee99ac, 1.2);
 }
 body {
-    max-width: 50%;
-    max-width: 9rem;
-    min-width: 400px;
-    margin: auto;
-    background: transparent;
     text-align: center;
+    background: transparent;
+    line-height: 1;
+    color: #000;
     overflow: hidden;
-    overflow-y: scroll;
+    font-family: 'Roboto', sans-serif;
 }
 html {
     background: url('./bg.png');
@@ -237,6 +229,15 @@ input {
     margin-top: 1rem;
     width: 80%;
 }
+#main {
+    max-width: 9rem;
+    min-width: 400px;
+    margin: auto;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: 100vh;
+}
+
 .suggestions {
     width: 80%;
     margin: auto;
@@ -283,6 +284,19 @@ input {
     font-size: 0.8rem;
     vertical-align: top;
     line-height: 3.67em;
+}
+
+.options {
+    margin: 10px 0;
+    text-align: center;
+}
+
+body.onModal {
+    overflow: hidden;
+}
+
+body.onModal #main {
+    filter: blur(4px);
 }
 
 .loader {

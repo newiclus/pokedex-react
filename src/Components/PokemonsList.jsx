@@ -12,7 +12,7 @@ function NoFound() {
   )
 }
 
-function ListResult({data}) {
+function ListResult({data, onClick}) {
   return (
     data.map((item) => (
       <Pokemon
@@ -20,17 +20,18 @@ function ListResult({data}) {
         id={item.Number}
         name={item.Name}
         img={item.img}
-        types={item.Types} 
+        types={item.Types}
+        onInfoClick={onClick}
       />
     ))
   );
 };
 
-function PokemonsList({list}) {
+function PokemonsList({list, onMoreInfo}) {
   return (
     <ul className="suggestions">
       {list.length > 0 
-        ? <ListResult data={list} />
+        ? <ListResult data={list} onClick={onMoreInfo}/>
         : <NoFound />
       }
     </ul>

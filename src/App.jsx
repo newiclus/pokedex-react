@@ -1,5 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import PokemonsList from './Components/PokemonsList';
+import Modal from './Components/Modal';
+import PokemonDetail from './Components/PokemonDetail';
 
 import './App.css';
 
@@ -9,6 +11,9 @@ const App = () => {
     const [pokeDex, setPokeDex] = useState([]);
     const [pokemons, setPokemons] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [openModal, setOpenModal] = useState(false);
+    const [currentId, setCurrentId] = useState(null);
+    const [pokemonDetail, setPokemonDetail] = useState({});
 
     const getPokemonData = () => (
       fetch(URL_PATH)
@@ -55,16 +60,40 @@ const App = () => {
       }
     }
 
+    const handleCloseModal = (event) => {
+      setOpenModal(false);
+      document.querySelector('body').classList.remove('onModal');
+    }
+
+    const handleMoreInfo = (id) => {
+      const detail = pokeDex.filter(item => item.Number === id);
+
+      setOpenModal(true);
+      setCurrentId(id);
+      setPokemonDetail(detail[0]);
+
+      document.querySelector('body').classList.add('onModal');
+    }
+
     return (
-      <>
-        <label htmlFor="maxCP" className="max-cp">
-          <input type="checkbox" id="maxCP" />
-          <small>Maximum Combat Points</small>
-        </label>
-        <input type="search" className="input" onChange={handleSearchBox} placeholder="Pokemon or type" />
-        {isLoading && <div className="loader"></div>}
-        <PokemonsList list={pokemons} />
-      </>
+      <React.Fragment>
+        <section id="main">
+          <label htmlFor="maxCP" className="max-cp">
+            <input type="checkbox" id="maxCP" />
+            <small>Maximum Combat Points</small>
+          </label>
+
+          <input type="search" className="input" onChange={handleSearchBox} placeholder="Pokemon or type" />
+
+          {isLoading && <div className="loader"></div>}
+
+          <PokemonsList list={pokemons} onMoreInfo={handleMoreInfo} />
+        </section>
+        
+        <Modal open={openModal} onClose={handleCloseModal}>
+          {currentId && <PokemonDetail detail={pokemonDetail} />}
+        </Modal>
+      </React.Fragment>
     );
 }
 
